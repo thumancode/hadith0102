@@ -1,0 +1,227 @@
+/* ---------- tokens ---------- */
+:root {
+  --bg0: #04201b;
+  --bg1: #0b3d33;
+  --bg2: #145c4b;
+  --gold: #e3c26b;
+  --goldL: #f8e7ae;
+  --goldD: #a67c28;
+  --cream: #fff6dc;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: #000;
+  overflow: hidden;
+}
+
+/* ---------- font stacks (installed by render.yml via apt) ---------- */
+.bn, body {
+  font-family: 'Noto Serif Bengali', 'Noto Sans Bengali', 'FreeSerif', serif;
+}
+.ar {
+  font-family: 'Amiri', 'Noto Naskh Arabic', 'FreeSerifBold', 'DejaVu Sans', serif;
+  direction: rtl;
+  unicode-bidi: isolate;
+}
+
+#video {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1080px;
+  height: 1920px;
+  overflow: hidden;
+  transform-origin: 0 0;
+  color: var(--cream);
+}
+#bg, #hud {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1080px;
+  height: 1920px;
+}
+#stage {
+  position: absolute;
+  left: 0;
+  top: 215px;
+  width: 1080px;
+  height: 1200px;
+}
+
+.abs { position: absolute; }
+.fill { position: absolute; left: 0; top: 0; width: 100%; height: 100%; }
+.ctr { text-align: center; }
+
+/* ---------- cards / chips ---------- */
+.card {
+  position: absolute;
+  box-sizing: border-box;
+  border-radius: 34px;
+  border: 3px solid rgba(227, 194, 107, 0.85);
+  background: linear-gradient(160deg, rgba(4, 32, 27, 0.86), rgba(11, 61, 51, 0.78));
+  box-shadow: 0 0 40px rgba(227, 194, 107, 0.22), inset 0 0 36px rgba(227, 194, 107, 0.10);
+}
+.card.cream {
+  background: linear-gradient(160deg, #fff6dc, #ecd79b);
+  border-color: #a67c28;
+}
+.inner {
+  position: absolute;
+  left: 0;
+  right: 0;
+  text-align: center;
+}
+.chip {
+  position: absolute;
+  box-sizing: border-box;
+  padding: 10px 34px;
+  border-radius: 999px;
+  border: 3px solid rgba(227, 194, 107, 0.9);
+  background: rgba(4, 32, 27, 0.82);
+  color: var(--goldL);
+  font-size: 40px;
+  line-height: 1.35;
+  text-align: center;
+  white-space: nowrap;
+  box-shadow: 0 0 28px rgba(227, 194, 107, 0.25);
+}
+.chip.solid {
+  background: linear-gradient(180deg, #f8e7ae, #e3c26b 55%, #a67c28);
+  color: #3a2a08;
+  border-color: #f8e7ae;
+}
+.chip.warn {
+  border-color: #e89a62;
+  color: #ffe2c4;
+  box-shadow: 0 0 28px rgba(232, 154, 98, 0.3);
+}
+
+/* ---------- Arabic text ---------- */
+.arT {
+  color: var(--goldL);
+  line-height: 1.55;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.55);
+}
+.arT.cr { color: var(--cream); }
+.arT .w, .w { display: inline-block; }
+.hon { color: var(--gold); }
+
+/* ---------- subtitles ---------- */
+.sub-panel {
+  position: absolute;
+  left: 60px;
+  top: 1445px;
+  width: 960px;
+  height: 330px;
+  box-sizing: border-box;
+  border-radius: 40px;
+  border: 3px solid rgba(227, 194, 107, 0.75);
+  background: rgba(3, 20, 16, 0.74);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5), inset 0 0 40px rgba(227, 194, 107, 0.08);
+}
+.sub-box {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 22px 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.sub-text {
+  width: 100%;
+  text-align: center;
+  line-height: 1.5;
+  color: var(--cream);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+}
+.sub-text .w { display: inline-block; }
+.hl { color: var(--gold); }
+
+/* ---------- brand bar ---------- */
+.brand {
+  position: absolute;
+  left: 60px;
+  top: 58px;
+  width: 960px;
+  height: 112px;
+}
+.brand .logo {
+  position: absolute;
+  left: 0;
+  top: 6px;
+  width: 124px;
+  height: 100px;
+  border-radius: 26px;
+  overflow: hidden;
+  box-shadow: 0 0 0 3px var(--gold), 0 0 24px rgba(227, 194, 107, 0.45);
+  background: #fff;
+}
+.brand .name {
+  position: absolute;
+  left: 150px;
+  top: 4px;
+  width: 810px;
+  font-size: 42px;
+  line-height: 1.3;
+  color: var(--goldL);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+  white-space: nowrap;
+}
+.brand .tag {
+  position: absolute;
+  left: 150px;
+  top: 62px;
+  font-size: 30px;
+  color: rgba(255, 246, 220, 0.78);
+  white-space: nowrap;
+}
+
+/* ---------- app icon and store badge crops ---------- */
+.iconbox {
+  position: absolute;
+  overflow: hidden;
+  background: #fff;
+}
+.iconbox img {
+  position: absolute;
+  left: -2%;
+  top: -2%;
+  width: 104%;
+  height: 104%;
+  display: block;
+}
+.badge {
+  position: absolute;
+  width: 560px;
+  height: 161px;
+  border-radius: 26px;
+  overflow: hidden;
+  background: #000;
+  box-shadow: 0 0 0 4px var(--gold), 0 0 44px rgba(227, 194, 107, 0.5);
+}
+.badge img {
+  position: absolute;
+  left: -45.3px;
+  top: -45.3px;
+  width: 650.6px;
+  height: 251.8px;
+  display: block;
+}
+
+/* ---------- misc ---------- */
+.ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 4px solid rgba(227, 194, 107, 0.9);
+  box-sizing: border-box;
+}
+.svgbox { position: absolute; }
+.svgbox svg { display: block; overflow: visible; }
+.num { font-size: 40px; color: var(--gold); }
