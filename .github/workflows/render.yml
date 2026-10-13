@@ -1,1 +1,61 @@
+name: Render hadith video
 
+# Actions tab → "Render hadith video" → Run workflow
+# When it finishes, download the "hadith-video" zip from the Artifacts section of the run page.
+on:
+  workflow_dispatch:
+    inputs:
+      test_seconds:
+        description: "Test only: render the first N seconds (leave empty for the full video)"
+        required: false
+        default: ""
+      workers:
+        description: "Parallel browsers (empty = auto)"
+        required: false
+        default: ""
+
+permissions:
+  contents: read
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install FFmpeg and fonts
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg fonts-noto-core fonts-hosny-amiri fonts-freefont-ttf fonts-dejavu-core
+          fc-cache -f
+
+      - name: Install dependencies
+        run: |
+          npm install
+          npx playwright install --with-deps chromium
+
+      - name: Render video
+        env:
+          TEST_SECONDS: ${{ github.event.inputs.test_seconds }}
+          WORKERS: ${{ github.event.inputs.workers }}
+        run: |
+          ARGS=""
+          if [ -n "$TEST_SECONDS" ]; then ARGS="$ARGS --test $TEST_SECONDS"; fi
+          if [ -n "$WORKERS" ]; then ARGS="$ARGS --workers $WORKERS"; fi
+          node render.js $ARGS
+
+      - name: Upload video
+        uses: actions/upload-artifact@v4
+        with:
+          name: hadith-video
+          path: hadith-video.mp4
+          if-no-files-found: error
+          retention-days: 30
+          compression-level: 0
